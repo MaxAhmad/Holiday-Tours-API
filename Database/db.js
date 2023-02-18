@@ -1,13 +1,15 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const config = require('../config/config')
+const config = require("../config/config");
 
-mongoose.set('strictQuery', false)
+const logger = require('../logging/logger')
+
+mongoose.set("strictQuery", false);
 
 exports.connectToDB = () => {
-    mongoose.connect(config.MONGOURL)
+  mongoose.connect(config.MONGOURL);
 
-    mongoose.connection.on('connected', () => {
-        console.log('Connected to Database')
-    })
-}
+  mongoose.connection.on("connected", () => {
+    logger.info("Connected to Database");
+  });
+};
